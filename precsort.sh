@@ -1,8 +1,9 @@
 #!/bin/bash
-#Prerequisites: fdupes is needed for duplicate detection, exiv2 for jpg sorting
-#Description: find files, create folder with extension name, move files to folder with right extension, for jpg files
-#usage: ./extsort.sh {path} {destination}
-#example: ./extsort.sh /mnt/recovered/ /mnt/sorted
+# Prerequisites: fdupes is needed for duplicate detection, exiv2 for jpg sorting
+# Description: find files, create folder with extension name, move files to folder with right extension, for jpg files
+# usage: ./precsort.sh {path} {destination}
+# example: ./precsort.sh /mnt/recovered/ /mnt/sorted
+
 #set variables
 path=$1
 IFS=$'\n'
@@ -10,13 +11,14 @@ dst=$2
 #
 #let's start with a clean screen..
 clear
+# Check syntax
 if [[ -z $path || -z $dst ]]
   then
   echo "Missing arguments."
   echo "usage: ./extsort {path} {destination}"
   exit 1
 fi
-#check if exiv2 and fdupes are installed, if not.. error out.
+# Check if exiv2 and fdupes are installed, if not.. error out.
 if ! [[ -x "$(command -v exiv2)"  || -x "$(command -v fdupes)" ]]
   then
   printf "\n Missing applications!"
@@ -27,11 +29,15 @@ printf "\n-------------------"
 printf "\n| Photorec sorter |"
 printf "\n-------------------"
 printf "\n\n Moving files to ${dst} (This may take a while)..."
-#find non-empty files in path
+# Find non-empty files in path (no point wasting time on 0 byte files)
 for i in $(find $path -type f ! -empty)
   do
   #get just the extension (after last .)
   ext=$(echo "$i" | perl -ne 'print $1 if m/\.([^.\/]+)$/')
+  if [ ! z "$ext" ]
+  then
+    ext="none"
+  fi
   mkdir -p $dst/$ext
   #move file to destination, if file exists add number at end (numbered backups)
   mv --backup=t "$i" $dst/$ext
