@@ -9,5 +9,5 @@ Sorts the data from your recup_XX dirs and puts them in to folders based on exte
 
 *Example:```./precsort.sh /mnt/recovered/ /mnt/sorted/```
 
-Gif in action:
+GIF of script in action:
 ![](https://media.giphy.com/media/26DMTyRMOf3XVOBiM/giphy.gif)
