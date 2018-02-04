@@ -34,7 +34,7 @@ for i in $(find $path -type f ! -empty)
   do
   #get just the extension (after last .)
   ext=$(echo "$i" | perl -ne 'print $1 if m/\.([^.\/]+)$/')
-  if [ ! z "$ext" ]
+  if [[ -z "$ext" ]]
   then
     ext="none"
   fi
