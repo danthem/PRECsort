@@ -1,13 +1,15 @@
 # PRECsort
-Simple shell script to sort the result from Photorec recovery.
+The purpose of this script is to assist in going through data recovered via Photorec (https://www.cgsecurity.org/wiki/PhotoRec), this data will all be unsorted in recup_XX dirs which is not very easy to go through manually.
 
-Sorts the data from your recup_XX dirs and puts them in to folders based on extension. It also attempts to rename jpeg files based on exif data and move them in to subfolders based on that.
+The script will take two arguments, a source directory ($1) and a destination directory ($2), the source directory should be the destination directory that you used for Photorec and destination directory should be a new directory where you want to move the sorted data. 
+
+For each extension found, a subdirectory will be created in your destination directory and files with be placed in the directory matching its extension. Only files >0 bytes will be moved, we'll ignore empty files. Once all files are moved, fdupes is used to clear out any detected duplicates. If there were any JPG files recovered, exiv2 will be called to rename JPG files based on their EXIF timestamp and then further sorted by year (where possible).
 
 *Requirements: exiv2 and fdupes needs to be installed on system. (```apt-get install exiv2 fdupes```   or ```pacman -S exiv2 fdupes``` )
 
-*Syntax: ```./precsort.sh {source} {destination}```
+*Syntax: ```bash precsort.sh {source} {destination}```
 
-*Example:```./precsort.sh /mnt/recovered/ /mnt/sorted/```
+*Example:```bash precsort.sh /mnt/recovered/ /data/sorted/```
 
 GIF of script in action:
-![](https://media.giphy.com/media/26DMTyRMOf3XVOBiM/giphy.gif)
+![](precsort2.gif)
