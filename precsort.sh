@@ -35,8 +35,8 @@ fi
 # Check if exiv2 and fdupes are installed, if not.. error out.
 if ! [[ -x "$(command -v exiv2)"  || -x "$(command -v fdupes)" ]]
   then
-  printf "\nMissing dependencies!"
-  printf "${red}ERROR:${yellow} ${white}exiv2${normal} and/or ${white}fdupes${normal} missing: install them before running this script\n"
+  printf "\n${red}ERROR:${yellow} Missing dependencies\n"
+  printf "${white}exiv2${normal} and/or ${white}fdupes${normal} missing: install them before running this script\n"
   exit 1
 fi
 
@@ -102,8 +102,8 @@ if [[ -d "$dst""/jpg" ]]; then
         #move file to backup
         mv --backup=t "${photo}" "${dst}"/jpg/"${year}"/ 2>/dev/null
       done &
-      printf " ${green}Done!${normal}\n"
       spinner
+      printf " ${green}Done!${normal}\n"
 fi
 printf "%s" "--------------"
 printf "\nAll done!\n"
