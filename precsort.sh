@@ -1,8 +1,9 @@
 #!/bin/bash
 # Prerequisites: fdupes is needed for duplicate detection, exiv2 for jpg sorting
-# Description: find files, create folder with extension name, move files to folder with right extension, for jpg files
-# usage: ./precsort.sh {path} {destination}
-# example: ./precsort.sh /mnt/recovered/ /mnt/sorted
+# Description: find files, create directory with extension name, move file to matching directory.
+# Purpose: To be used after restoring data with photorec (https://www.cgsecurity.org/wiki/PhotoRec)
+# Usage: ./precsort.sh {path} {destination}
+# Example: ./precsort.sh /mnt/recovered/ /mnt/sorted
 
 #set variables
 path=$1
@@ -18,8 +19,7 @@ normal=$(tput sgr0) # default color
 #let's start with a clean screen..
 clear
 # Check syntax and dependencies
-if [[ -z "${path}" || -z "${dst}" ]]
-  then
+if [[ -z "${path}" || -z "${dst}" ]]; then
     printf "${red}Error:${normal}"
     echo "Missing arguments."
     echo "Usage: ./extsort {path} {destination}"
@@ -95,7 +95,7 @@ if [[ -d "$dst""/jpg" ]]; then
     printf "${green}Done!${normal}\n > Sorting JPGs based on exif timestamp... "
       find "${dst}""/jpg" -type f | while read -r photo; do
         # Grep for timestamp, if timestamp can be found we get the 4th field, remove blank lines (exif data found, no date found), we set delimiter to ":" and take first field (year)
-        # This works for most cameras although some cameras may store timestamps in a different format in which case the folder sorting may not work that great
+        # This works for most cameras although some cameras may store timestamps in a different format in which case the directory sorting may not work that great
         year=$(exiv2 "${photo}" 2> /dev/null | grep timestamp | awk '{print $4}' | sed '/^$/d' | cut -d : -f 1)
         # Create a directory per year (skip if already exists).
         mkdir -p "${dst}"/jpg/"${year}"/
