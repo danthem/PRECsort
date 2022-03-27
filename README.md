@@ -16,8 +16,8 @@ Big shout-out to Phil Harvey for exiftool, Adrian Lopez for fdupes and of course
 *Requirements: exiftool and fdupes needs to be installed on system. (Depending on your distro: ```apt-get install exiftool fdupes```)
 
 
-*Syntax: ```bash precsort.sh {source} {destination}```
-*Example:```bash precsort.sh /mnt/recovered/ /data/sorted/```  
+ - Syntax: ```bash precsort.sh {source} {destination}```
+ - Example:```bash precsort.sh /mnt/recovered/ /data/sorted/```  
 
 GIF of script in action:
 ![](precsort2.gif)
