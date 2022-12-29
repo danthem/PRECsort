@@ -7,7 +7,7 @@ The script will take two arguments, a source directory ($1) and a destination di
 
 For each extension found, a subdirectory will be created in your destination directory and files with be placed in the directory matching its extension. Only files >0 bytes will be moved, we'll ignore empty files. Once all files are moved, fdupes is used to clear out any detected duplicates. If there were any JPG files recovered, exiftool is used to rename and sort some extensions based on their EXIF timestamp and then further sort by year (where possible).
 
-Big shout-out to Phil Harvey for exiftool, Adrian Lopez for fdupes and of course Christophe Genier for his amazing Photorec check out their projects:
+Big shout-out to Phil Harvey for exiftool, Adrian Lopez for fdupes and of course Christophe Grenier for his amazing Photorec check out their projects:
  - [exiftool on github](https://github.com/exiftool/exiftool) 
  - [fdupes on github](https://github.com/adrianlopezroche/fdupes)
  - [photorec/testdisk on github](https://github.com/cgsecurity/testdisk)
